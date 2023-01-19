@@ -1,8 +1,11 @@
 import React, { Fragment, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 function ListingForm({onAdd}) {
     // declare state variable to hold user input
     const [userData, setUserData] = useState({})
+    let navigator = useNavigate();
 
     function handleInput(e) {
         e.preventDefault();
@@ -28,6 +31,7 @@ function ListingForm({onAdd}) {
         })
         .then((r)=>r.json())
         .then(() => onAdd(userData))
+        navigator("/showlistings")
     }
 
     return(
