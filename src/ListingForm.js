@@ -16,7 +16,18 @@ function ListingForm({onAdd}) {
 
     function hanldeSubmit(e) {
         e.preventDefault()
-        onAdd(userData)
+        // onAdd(userData)
+
+        // post request after submission
+        fetch("http://localhost:3000/listings", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(userData)
+        })
+        .then((r)=>r.json())
+        .then(() => onAdd(userData))
     }
 
     return(
